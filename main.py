@@ -117,7 +117,7 @@ result_erc721 = cursor.fetchone()
 print(f"Total de NFTs ERC721 armazenados: {result_erc721[0]}")
 
 # Consulta para obter o número do bloco mais recente armazenado
-cursor.execute('''
+cursor.execute('''                                               
     SELECT latest_block FROM block_data ORDER BY id DESC LIMIT 1
 ''')
 result_block = cursor.fetchone()
@@ -126,7 +126,7 @@ print(f"Número do bloco mais recente armazenado: {result_block[0]}")
 db_connection.commit()
 db_connection.close()
 
-# Agendar a atualização automática usando a biblioteca 'schedule'
+
 schedule.every(1).minutes.do(update_data_job)  # Agendar a atualização a cada minuto
 
 # Comando CLI para exibir dados
@@ -140,7 +140,8 @@ def show_data():
         click.echo(f"Total de NFTs (ERC721): {erc721_tokens}")
         click.echo(f"Número do bloco mais recente: {block_number}")
 
-        time.sleep(60)  # Aguardar 1 minuto antes da próxima atualização
+
+        time.sleep(30)  
 
 # Executar a CLI
 if __name__ == '__main__':
